@@ -1,31 +1,26 @@
-import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import classNames from 'classnames/bind';
 import {
-    faCircleXmark,
-    faSpinner,
-    faPlus,
-    faEllipsisVertical,
-    faEarthAsia,
-    faCircleQuestion,
-    faKeyboard,
-    faUser,
     faBookmark,
+    faCircleQuestion,
+    faEarthAsia,
+    faEllipsisVertical,
     faGear,
+    faKeyboard,
+    faPlus,
     faRightToBracket,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
+import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
 
-import styles from './Header.module.scss';
 import images from '~/assets/images';
-import { Wrapper as PopperWrapper } from '~/components/Popper/';
-import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
-import Menu from '~/components/Popper/Menu';
-import { InboxIcon, MessageIcon, SearchIcon } from '~/components/Icons';
+import { InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
+import Menu from '~/components/Popper/Menu';
+import Search from '../Search';
+import styles from './Header.module.scss';
 
 // bind ràng buộc theo styles đã import --> trả về func
 // classNames giúp viết được tên class có chứa dấu -
@@ -88,14 +83,7 @@ const userMenu = [
 ];
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
     const currentUser = true;
-
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
 
     const handleMenuItem = (menuItem) => {
         console.log(menuItem);
@@ -107,34 +95,7 @@ function Header() {
                 {/* Logo */}
                 <img src={images.logo} alt="Tiktok logo" />
                 {/* Search box */}
-                <HeadlessTippy
-                    interactive={true} //cho phep click vao ben trong tooltip
-                    visible={searchResult.length > 0} //set dk hien thi kq tim kiem
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Acounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Tìm kiếm" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <button className={cx('loading')}>
-                            <FontAwesomeIcon icon={faSpinner} />
-                        </button>
-                        <span className={cx('seperate')}></span>
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search />  
                 {/* Actions */}
                 <div className={cx('actions')}>
                     {currentUser ? (
