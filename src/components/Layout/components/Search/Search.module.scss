@@ -43,6 +43,19 @@ input:not(:placeholder-shown) ~ .search-btn {
     font-size: 1.6rem;
 }
 
+.loading {
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
 .separate {
     width: 2px;
     height: 28px;
