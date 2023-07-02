@@ -95,7 +95,7 @@ function Header() {
                 {/* Logo */}
                 <img src={images.logo} alt="Tiktok logo" />
                 {/* Search box */}
-                <Search />  
+                <Search />
                 {/* Actions */}
                 <div className={cx('actions')}>
                     {currentUser ? (
@@ -104,6 +104,7 @@ function Header() {
                                 <Button
                                     className={cx('action-btn')}
                                     outlineGray
+                                    small
                                     leftIcon={<FontAwesomeIcon icon={faPlus} />}
                                 >
                                     Upload

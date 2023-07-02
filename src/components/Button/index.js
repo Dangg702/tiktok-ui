@@ -4,22 +4,22 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function Button({ 
-    to, 
-    href, 
-    primary = false, 
-    outlinePrimary = false, 
-    outlineGray = false, 
+function Button({
+    to,
+    href,
+    primary = false,
+    outlinePrimary = false,
+    outlineGray = false,
     rounded = false,
     disabled = false,
     leftIcon = false,
     rightIcon = false,
     small = false,
     large = false,
-    children, 
+    children,
     className,
-    onClick, 
-    ...passProps 
+    onClick,
+    ...passProps
 }) {
     let Comp = 'button';
     // props chứa các props nội bộ và passProps chứa các props mở rộng (target, ...)
@@ -34,11 +34,11 @@ function Button({
         // delete props.disabled;
 
         // Cach 2
-        Object.keys(props).forEach(key => {
-            if(key.startsWith('on') && typeof props[key] === 'function') {
+        Object.keys(props).forEach((key) => {
+            if (key.startsWith('on') && typeof props[key] === 'function') {
                 delete props[key];
             }
-        })
+        });
     }
 
     // kt các props và gán tag phù hợp
