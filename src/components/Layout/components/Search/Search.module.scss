@@ -1,9 +1,13 @@
+.search-container {
+    max-width: var(--search-box-width);
+    width: 100%;
+}
+
 .search {
     position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
-    max-width: var(--search-box-width);
     width: 100%;
     height: 46px;
     background-color: rgba(22, 24, 35, 0.06);
@@ -16,6 +20,8 @@
     input {
         width: 100%;
         height: 100%;
+        padding-right: 40px;
+        font-family: var(--font-family);
         color: var(--black);
         caret-color: var(--primary);
         font-size: 1.6rem;

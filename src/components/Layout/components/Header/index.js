@@ -13,7 +13,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
+import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 
+import routesConfig from '~/config/routes';
 import images from '~/assets/images';
 import Button from '~/components/Button';
 import { InboxIcon, MessageIcon } from '~/components/Icons';
@@ -83,33 +86,35 @@ const userMenu = [
 ];
 
 function Header() {
+    const updateBtnRef = useRef();
     const currentUser = true;
 
     const handleMenuItem = (menuItem) => {
-        console.log(menuItem);
+        // console.log(menuItem);
     };
 
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 {/* Logo */}
-                <img src={images.logo} alt="Tiktok logo" />
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="Tiktok logo" />
+                </Link>
                 {/* Search box */}
                 <Search />
                 {/* Actions */}
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
-                                <Button
-                                    className={cx('action-btn')}
-                                    outlineGray
-                                    small
-                                    leftIcon={<FontAwesomeIcon icon={faPlus} />}
-                                >
-                                    Upload
-                                </Button>
-                            </Tippy>
+                            <Button
+                                ref={updateBtnRef}
+                                className={cx('action-btn')}
+                                outlineGray
+                                small
+                                leftIcon={<FontAwesomeIcon icon={faPlus} />}
+                            >
+                                Upload
+                            </Button>
                             <Tippy delay={[0, 100]} content="Messages" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <MessageIcon />

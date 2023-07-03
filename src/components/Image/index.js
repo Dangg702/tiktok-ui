@@ -12,7 +12,9 @@ const Image = forwardRef(({ src, alt, className, fallback: customFallback = imag
     const handleError = () => {
         setFallback(customFallback);
     };
+
     // mặc định Image có css của wrapper còn các className để custom sau này
+
     return (
         <img
             className={classNames(styles.wrapper, className)}

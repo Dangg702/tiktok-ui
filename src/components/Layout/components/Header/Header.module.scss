@@ -2,12 +2,16 @@
     --search-border-radius: 92px;
     --search-button-width: 75px;
     --search-box-width: 500px;
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: var(--default-layout-header-height);
     box-shadow: 0 1px 1px rgb(0 0 0 / 12%);
-    display: flex;
-    justify-content: center;
+    background-color: var(--white);
 }
 
 .inner {
@@ -17,6 +21,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+// logo
+.logo-link {
+    display: flex;
 }
 
 // actions
@@ -50,7 +59,7 @@
     color: var(--white);
     font-size: 1.2rem;
     font-weight: 600;
-    font-family: 'TikTokFont', sans-serif;
+    font-family: var(--font-family);
     line-height: 2rem;
     padding: 0 5px;
     border-radius: 10px;
