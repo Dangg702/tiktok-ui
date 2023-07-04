@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
@@ -51,7 +52,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn,
                         {/* có từ 2 cấp trở lên thì hiện header */}
                         {history.length > 1 && (
                             <Header
-                                title={history[history.length - 1].title}
+                                title={current.title}
                                 onBack={() => {
                                     setHistory((prev) => prev.slice(0, prev.length - 1));
                                 }}
@@ -70,5 +71,12 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn,
         </Tippy>
     );
 }
+
+Menu.prototype = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    hideOnClick: PropTypes.bool,
+    onChange: PropTypes.func,
+};
 
 export default Menu;

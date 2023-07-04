@@ -14,7 +14,6 @@ import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
 import { Link } from 'react-router-dom';
-import { useRef } from 'react';
 
 import config from '~/config';
 import images from '~/assets/images';
@@ -86,7 +85,6 @@ const userMenu = [
 ];
 
 function Header() {
-    const updateBtnRef = useRef();
     const currentUser = true;
 
     const handleMenuItem = (menuItem) => {
@@ -107,7 +105,6 @@ function Header() {
                     {currentUser ? (
                         <>
                             <Button
-                                ref={updateBtnRef}
                                 className={cx('action-btn')}
                                 outlineGray
                                 small
