@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Header from '~/layouts/components/Header';
@@ -7,6 +8,9 @@ import Sidebar from '~/layouts/components/Sidebar';
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [children]);
     return (
         <div className={cx('wrapper')}>
             <Header />
@@ -20,6 +24,6 @@ function DefaultLayout({ children }) {
 
 DefaultLayout.propTypes = {
     children: PropTypes.node.isRequired,
-}
+};
 
 export default DefaultLayout;

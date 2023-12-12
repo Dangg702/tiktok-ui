@@ -1,0 +1,119 @@
+.title {
+    font-size: 32px;
+    margin: 16px auto;
+    font-weight: bold;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .btn {
+        color: rgba(22, 24, 35, 0.75);
+        font-size: 1.2rem;
+        display: inline-block;
+    }
+}
+
+// form
+.select-box select {
+    width: 120px;
+    height: 44px;
+    padding: 0px 12px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    border-radius: 2px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    background-color: rgba(22, 24, 35, 0.06);
+    outline: none;
+
+    option {
+        background-color: var(--white);
+        z-index: -1;
+    }
+
+    .option-item {
+        height: 34px;
+        overflow: auto;
+        padding: 8px 12px;
+    }
+
+    .option-item:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 9px;
+
+    input:not([type='checkbox']) {
+        height: 44px;
+        width: 100%;
+        font-size: 1.6rem;
+        caret-color: var(--primary);
+        padding-inline-start: 12px;
+        padding-inline-end: unset;
+        border-radius: 2px;
+        border: 1px solid rgba(22, 24, 35, 0.12);
+        background-color: rgba(22, 24, 35, 0.06);
+        outline: none;
+        &.error {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+    }
+
+    .eye-icon {
+        height: 44px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        padding-inline-end: 16px;
+    }
+
+    .label-checkbox {
+        font-size: 1.2rem;
+        line-height: 16px;
+        display: flex;
+    }
+}
+.error {
+    font-size: 1.2rem;
+    color: var(--primary);
+    &.hide {
+        display: none;
+    }
+}
+
+.forgot-password {
+    color: rgba(22, 24, 35, 0.75);
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.btn-login {
+    width: 100%;
+    min-height: 46px;
+    // color: rgba(22, 24, 35, 0.6);
+    font-weight: 700;
+    // background-color: rgba(22, 24, 35, 0.06);
+    margin-top: 21px;
+    cursor: pointer;
+}

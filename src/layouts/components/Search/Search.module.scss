@@ -87,6 +87,7 @@ input:not(:placeholder-shown) ~ .search-btn {
 // Wrapper for search result
 .search-result {
     width: var(--search-box-width);
+    max-width: 100%;
     font-size: 1.4rem;
 }
 
@@ -95,4 +96,10 @@ input:not(:placeholder-shown) ~ .search-btn {
     font-weight: 600;
     color: rgba(22, 24, 35, 0.5);
     padding: 5px 12px;
+}
+
+@media (max-width: 770px) {
+    .search-container {
+        display: none;
+    }
 }

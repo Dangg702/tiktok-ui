@@ -5,7 +5,7 @@
     font-size: 1.6rem;
     font-weight: 600;
     font-family: var(--font-family);
-    min-width: 100px;
+    width: 100px;
     padding: 9px 16px;
     border-radius: 4px;
     border: 1px solid transparent;
@@ -70,6 +70,7 @@
 
 // Button Sizes
 .small {
+    min-height: 28px;
     min-width: 88px;
     padding: 8px 14px;
     font-size: 1.6rem;
@@ -89,4 +90,5 @@
 .icon + span,
 span + .icon {
     margin-left: 8px;
+    text-wrap: nowrap;
 }

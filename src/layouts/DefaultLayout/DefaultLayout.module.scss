@@ -6,12 +6,20 @@
 
 .container {
     width: var(--default-layout-width);
+    max-width: 100%;
     display: flex;
-    padding: 0 var(--default-layout-horizontal-spacer);
+    // padding: 0 var(--default-layout-horizontal-spacer);
+    padding-left: 8px;
     margin-top: var(--default-layout-header-height);
 }
 
 .content {
-    flex: 1;
-    background-color: #bbb;
+    position: relative;
+    left: var(--sidebar-width);
+    display: flex;
+    width: calc(100vw - var(--sidebar-width) - 10px);
+    margin-left: -11px;
+}
+
+@media (max-width: 767px) {
 }

@@ -1,0 +1,84 @@
+.wrapper {
+    width: 100%;
+    color: #fff;
+    background: #000;
+    padding-bottom: 24px;
+}
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 40px 0 0 378px;
+}
+
+.tiktok-logo {
+    display: block;
+    position: absolute;
+    left: 144px;
+    top: 43px;
+}
+
+.logo {
+    transform: scale(1.5);
+    color: var(--white);
+}
+
+.items-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0%;
+}
+
+.content-column {
+    flex: 1 1 0%;
+    max-width: 226px;
+    padding-right: 8px;
+    color: var(--white);
+
+    .title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 28px;
+    }
+
+    .item {
+        color: #ccc;
+        font-size: 1.4rem;
+        font-weight: 500;
+        position: relative;
+        display: block;
+        margin-bottom: 12px;
+
+        h5 {
+            border-bottom: 2px solid transparent;
+            outline: none;
+            transition: 0.1s ease-in-out;
+            width: fit-content;
+
+            &:hover {
+                border-bottom: 2px solid #ccc;
+            }
+        }
+    }
+}
+
+// Reposive
+@media (max-width: 920px) {
+    .content {
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 0 0 50%;
+    }
+    .tiktok-logo {
+        left: 50%;
+        top: 20px;
+    }
+    .items-container {
+        padding-top: 32px;
+        flex-direction: column;
+    }
+    .content-column {
+        margin-top: 32px;
+    }
+}

@@ -1,0 +1,21 @@
+.wrapper {
+    position: relative;
+    padding-top: 16px;
+    padding-left: 8px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 8px;
+        right: 8px;
+        height: 1px;
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+}
+
+@media (max-width: 920px) {
+    .wrapper {
+        display: none;
+    }
+}

@@ -3,7 +3,8 @@
     flex-direction: column;
     max-height: min((100vh - 96px) - 60px, 734px);
     min-height: 100px;
-    min-width: 223px;
+    // min-width: 223px;
+    min-width: 180px;
     max-width: var(--search-box-width);
     width: 100%;
     background: rgb(255, 255, 255);

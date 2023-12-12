@@ -1,49 +1,121 @@
-import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
-
+import PropTypes from 'prop-types';
+import { useContext, useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import Button from '~/components/Button/Button';
+import { ModalContext } from '~/components/ModalContext';
+import { LoginContext } from '~/components/LoginContext';
+import { useLogin, useModal } from '~/hooks';
 import { Wrapper as PopperWrapper } from '~/components/Popper/';
-import MenuItem from './MenuItem';
 import Header from './Header';
+import MenuItem from './MenuItem';
+import * as getUserService from '~/services/getUserService';
 import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
+const customStyles = {
+    content: {
+        width: '400px',
+        height: '194px',
+        padding: '32px',
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '8px',
+        border: '1px solid rgba(22, 24, 35, 0.03)',
+        boxShadow: 'rgba(0, 0, 0, 0.06) 0px 2px 8px',
+        backgroundColor: 'var(--white)',
+        overflow: 'none',
+    },
+    overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        zIndex: '999',
+    },
+};
+
 function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn, ...passProps }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
+    const isLogin = localStorage.getItem('token') !== null;
+    const [data, setData] = useState({});
+
+    const { logOut } = useLogin();
+    const { modalIsOpen, openModal, closeModal } = useModal();
+
+    // const modalContext = useContext(ModalContext);
+
+    useEffect(() => {
+        const fetchCurrentUser = async () => {
+            const result = await getUserService.getCurrentUser();
+            if (result) {
+                setData(result);
+            }
+        };
+        fetchCurrentUser();
+    }, []);
+
+    // luon quay lai trang dau tien sau khi tat menu
+    const handleResetMenu = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+
+    const handleBack = () => {
+        setHistory((prev) => prev.slice(0, prev.length - 1));
+    };
 
     const renderItems = () => {
         return current.data.map((item, index) => {
             const isParent = !!item.children;
             return (
-                <MenuItem
-                    key={index}
-                    data={item}
-                    onClick={() => {
-                        if (isParent) {
-                            setHistory((prev) => [...prev, item.children]);
-                        } else {
-                            onChange(item);
-                        }
-                    }}
-                />
+                <div key={index}>
+                    <MenuItem
+                        key={index}
+                        data={item}
+                        onClick={() => {
+                            if (isParent) {
+                                setHistory((prev) => [...prev, item.children]);
+                            } else {
+                                onChange(item);
+                            }
+                            if (item.title === 'View profile') {
+                                item.to = `/@${data.nickname}`;
+                            }
+                            if (item.title === 'Log out' && isLogin) {
+                                openModal();
+                            }
+                        }}
+                    />
+                    <Modal
+                        id="modal-logout"
+                        closeTimeoutMS={500}
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        appElement={document.getElementById('root')}
+                    >
+                        <div className={cx('modal-logout-wrapper')}>
+                            <div className={cx('logout-title')}>Are you sure you want to log out?</div>
+                            <div className={cx('logout-btn-wrapper')}>
+                                <Button outlineGray large onClick={() => closeModal()}>
+                                    Cancel
+                                </Button>
+                                <Button outlinePrimary large onClick={() => logOut()}>
+                                    Log out
+                                </Button>
+                            </div>
+                        </div>
+                    </Modal>
+                </div>
             );
         });
     };
-        
-    // luon quay lai trang dau tien sau khi tat menu
-    const handleResetMenu = () => {
-        setHistory((prev) => prev.slice(0, 1));
-    }
-
-    const handleBack = () => {
-        setHistory((prev) => prev.slice(0, prev.length - 1));
-    }
 
     return (
         <Tippy
@@ -59,12 +131,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn,
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
                         {/* có từ 2 cấp trở lên thì hiện header */}
-                        {history.length > 1 && (
-                            <Header
-                                title={current.title}
-                                onBack={handleBack}
-                            />
-                        )}
+                        {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
                         <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>

@@ -64,7 +64,6 @@ function Search() {
             <div className={cx('search-container')}>
                 <HeadlessTippy
                     interactive={true} //cho phep click vao ben trong tooltip
-                    // appendTo={() => document.body}
                     visible={showResult && searchResult.length > 0} //set dk hien thi kq tim kiem
                     placement="bottom-start"
                     render={(attrs) => (
