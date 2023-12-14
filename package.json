@@ -1,7 +1,7 @@
 {
     "name": "tiktok",
     "version": "0.1.0",
-    "homepage": "http://localhost:3000/tiktok-ui",
+    "homepage": "https://Dangg702.github.io/tiktok-ui/",
     "private": true,
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.3.0",
@@ -39,7 +39,7 @@
         "test": "react-app-rewired test",
         "eject": "react-scripts eject",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build"
+        "deploy": "gh-pages -b main -d build"
     },
     "eslintConfig": {
         "extends": [
