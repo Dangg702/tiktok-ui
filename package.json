@@ -1,7 +1,7 @@
 {
     "name": "tiktok",
     "version": "0.1.0",
-    "homepage": "https://Dangg702.github.io/tiktok-ui/",
+    "homepage": "http://localhost:3000/tiktok-ui",
     "private": true,
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.3.0",
