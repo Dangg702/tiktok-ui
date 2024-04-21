@@ -27,7 +27,6 @@ import Image from '~/components/Image';
 import CheckboxElement from '~/components/CheckboxElement';
 import SwitchElement from '~/components/SwitchElement';
 import { useGetUser, useVideo } from '~/hooks';
-import { postVideoService } from '~/services/postVideoService';
 import styles from './UploadPreview.module.scss';
 
 const cx = classNames.bind(styles);
@@ -91,24 +90,7 @@ function UploadPreview({ file, userData }) {
             setThumbnails(thumbs);
             setVideoThumb(thumbs[0]);
         });
-    }, [file]);
-
-    const upLoadFile = () => {
-        const fetchApi = async () => {
-            const FormData = require('form-data');
-            const formData = new FormData();
-
-            formData.append('description', caption);
-
-            formData.append('upload_file', file);
-            formData.append('thumbnail_time', 5);
-            formData.append('music', 'Hot Trend Tiktok 2023 Music!');
-            formData.append('viewable', 'public');
-
-            const result = await postVideoService(formData);
-        };
-        fetchApi();
-    };
+    }, []);
 
     const handleThumbnail = (e) => {
         setVideoThumb(e.target.src);
@@ -117,11 +99,12 @@ function UploadPreview({ file, userData }) {
     const changeThumbnail = () => {
         sliderTrack.current.style.setProperty('--slide-data', `${sliderRef.current.value}%`);
         sliderRef.current.setAttribute('value', sliderRef.current.value);
-        setSlideValue(sliderRef.current.value);
+        // setSlideValue(sliderRef.current.value);
         setCurrentValue((fullDuration / 100) * sliderRef.current.value);
         console.log('duration: ', fullDuration);
         console.log('slide value: ', sliderRef.current.value);
     };
+    const dragToChangeThumb = () => {};
     const handleShowOptions = () => {
         setShowOptions(!showOptions);
     };
@@ -173,7 +156,7 @@ function UploadPreview({ file, userData }) {
                         </div>
                         <div className={cx('video-cover')}>
                             {/* <div className={cx('video-cover-loading-block')}></div> */}
-                            {/* <video className={cx('video-cover-img')} src="" alt="video thumbnail" /> */}
+                            <video className={cx('video-cover-img')} src="" alt="video thumbnail" />
                             <video className={cx('video-cover-img')} src={videoUrl} />
                         </div>
                         <div className={cx('video-basic')}>
@@ -272,7 +255,11 @@ function UploadPreview({ file, userData }) {
                                         ))}
                                     </div>
                                     <div className={cx('cover-slider')}>
-                                        <div className={cx('cover-slider-track')} ref={sliderTrack}>
+                                        <div
+                                            className={cx('cover-slider-track')}
+                                            ref={sliderTrack}
+                                            onDrag={dragToChangeThumb}
+                                        >
                                             <div className={cx('cover-slider-thumb')}>
                                                 <div className={cx('video-slider')}>
                                                     {/* + '#t=1.5' */}
@@ -418,14 +405,7 @@ function UploadPreview({ file, userData }) {
                                 <Button outlineGray large>
                                     Discard
                                 </Button>
-                                <Button
-                                    primary
-                                    large
-                                    onClick={() => {
-                                        upLoadFile();
-                                    }}
-                                    to="/"
-                                >
+                                <Button primary large>
                                     Post
                                 </Button>
                             </div>

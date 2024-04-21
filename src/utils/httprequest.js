@@ -14,14 +14,4 @@ export const post = async (path, data = {}, options = {}) => {
     return response.data;
 };
 
-export const patch = async (path, data = {}, options = {}) => {
-    const response = await httpRequest.patch(path, data, options);
-    return response.data;
-};
-
-export const deleteReq = async (path, options = {}) => {
-    const response = await httpRequest.delete(path, options);
-    return response.data;
-};
-
 export default httpRequest;

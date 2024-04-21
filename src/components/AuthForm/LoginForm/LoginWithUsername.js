@@ -4,14 +4,13 @@ import { useEffect, useState, useContext } from 'react';
 import { HidePassWordIcon, ShowPassWordIcon } from '~/components/Icons';
 import styles from '../Form.module.scss';
 import Button from '~/components/Button/Button';
-import { LoginContext } from '~/components/LoginContext';
-import { ModalContext } from '~/components/ModalContext';
+import Profile from '~/pages/Profile/Profile';
+import { useLogin } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
 function LoginWithUsername() {
-    const contextLogin = useContext(LoginContext);
-    const modalContext = useContext(ModalContext);
+    const { error, login } = useLogin();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -20,57 +19,45 @@ function LoginWithUsername() {
     const [isError, setIsError] = useState(false);
 
     const hasSpace = password.includes(' ');
-    const pattern = /\S/;
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
         setIsError(false);
     };
-    const handleChangeUsername = (e) => {
-        setUsername(e.target.value);
-        setIsError(false);
-    };
 
-    const handleSubmit = () => {
-        contextLogin.fetchApi(username, password);
-        modalContext.closeModal();
-    };
-
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter' && !hasSpace && pattern.test(username) && pattern.test(password)) {
-            e.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
-            handleSubmit();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        login(username, password);
+        if (error !== null) {
+            setIsError(true);
         }
     };
 
     useEffect(() => {
-        if (!hasSpace && pattern.test(username) && pattern.test(password)) {
+        if (username !== '' && password !== '' && !hasSpace && !username.startsWith(' ')) {
             setDisabled(false);
         } else {
             setDisabled(true);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [username, password, hasSpace]);
 
     return (
-        <form className={cx('form')}>
+        <form className={cx('form')} onSubmit={handleSubmit}>
             <div className={cx('label')}>
                 <span>Email or username</span>
                 <button className={cx('btn')}>Login with phone</button>
             </div>
             <div className={cx('input-group')}>
                 <input
-                    onKeyDown={handleKeyPress}
                     className={cx('username')}
                     name="username"
                     value={username}
-                    onChange={handleChangeUsername}
+                    onChange={(e) => setUsername(e.target.value)}
                     placeholder="Email or username"
                 />
             </div>
             <div className={cx('input-group')}>
                 <input
-                    onKeyDown={handleKeyPress}
                     className={cx('password', { error: isError })}
                     name="password"
                     type={isShowPassword ? 'text' : 'password'}
@@ -87,12 +74,12 @@ function LoginWithUsername() {
                     {!isShowPassword ? <HidePassWordIcon /> : <ShowPassWordIcon />}
                 </div>
             </div>
-            <div className={cx('error', { hide: !isError })}>{contextLogin.error}</div>
+            <div className={cx('error', { hide: !isError })}>{error}</div>
 
             <a className={cx('forgot-password')} href="/">
                 Forgot password?
             </a>
-            <Button onClick={() => handleSubmit()} className={cx('btn-login')} disabled={disabled} primary>
+            <Button className={cx('btn-login')} disabled={disabled} primary>
                 Log in
             </Button>
         </form>

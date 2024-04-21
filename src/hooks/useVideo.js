@@ -46,7 +46,7 @@ export default function useVideo(videoRef, progressBar, animationRef, volumeBar)
     };
     // video progress bar handle
     const whilePlaying = () => {
-        if (videoRef.current && videoRef.current.currentTime) {
+        if (videoRef.current.currentTime) {
             progressBar.current.value = videoRef.current.currentTime;
             changePlayerCurrentTime();
             animationRef.current = requestAnimationFrame(whilePlaying);

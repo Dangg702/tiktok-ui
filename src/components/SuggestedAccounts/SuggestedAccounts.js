@@ -27,6 +27,7 @@ function SuggestedAccounts({ label }) {
 
     const handleSeeMore = () => {
         setPage(page + 1);
+        console.log('page: ', page);
     };
     const classnames = cx({
         'more-btn': true,

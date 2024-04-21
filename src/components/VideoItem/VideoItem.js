@@ -102,7 +102,7 @@ function VideoItem({ data }) {
         <div className={cx('wrapper')}>
             <div className={cx('video-card')}>
                 {/* video */}
-                <Link to={`/videos/${data.uuid}`}>
+                <Link to="/">
                     <video
                         preload="metadata"
                         onTimeUpdate={changePlayerCurrentTime}
@@ -168,12 +168,12 @@ function VideoItem({ data }) {
                     </span>
                     <strong className={cx('count-icon')}>{likesCount}</strong>
                 </button>
-                <Link to={`/videos/${data.uuid}`} className={cx('btn-action-icon')}>
+                <button className={cx('btn-action-icon')}>
                     <span className={cx('cover-icon')}>
                         <OpenCommentIcon />
                     </span>
                     <strong className={cx('count-icon')}>{data.comments_count}</strong>
-                </Link>
+                </button>
                 <button className={cx('btn-action-icon')}>
                     <span className={cx('cover-icon')}>
                         <FavoriteVideoIcon />

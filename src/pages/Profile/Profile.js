@@ -4,7 +4,7 @@ import TippyHeadless from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Button from '~/components/Button/Button';
 import {
     ArrowDownIcon,
@@ -24,19 +24,19 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { render5FirstItem, renderAllItem } from '~/components/VideoItem/ShareList';
 import * as getUserService from '~/services/getUserService';
 import styles from './Profile.module.scss';
-import EditProfileForm from '~/components/EditProfileForm';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
-    const followContext = useContext(FollowContext);
-    const loginContext = useContext(LoginContext);
     const { nickname } = useParams();
-    const currentNicknameUser = loginContext.data ? '@' + loginContext.data.nickname : '';
+
     const videoRef = useRef(null);
+    const followContext = useContext(FollowContext);
+    // const loginContext = useContext(LoginContext);
     const [data, setData] = useState({});
     const [listVideo, setListVideo] = useState([]);
     const [hideArrowIcon, setHideArrowIcon] = useState(false);
+
     useEffect(() => {
         const fetchApi = async () => {
             const result = await getUserService.getUser(nickname);
@@ -47,6 +47,8 @@ function Profile() {
         };
         fetchApi();
     }, [nickname]);
+
+    console.log('profile data: ', data);
 
     const ArrowClasses = cx('share-arrow', {
         hide: hideArrowIcon,
@@ -73,11 +75,7 @@ function Profile() {
                         </h2>
 
                         <div className={cx('user-follow')}>
-                            {nickname === currentNicknameUser ? (
-                                <>
-                                    <EditProfileForm />
-                                </>
-                            ) : followContext.isFollowed ? (
+                            {followContext.isFollowed ? (
                                 <>
                                     <Button className={cx('message-btn')} outlinePrimary>
                                         Message
@@ -193,21 +191,19 @@ function Profile() {
 
                 <div className={cx('four-column')}>
                     <div className={cx('video-item-list')}>
-                        {listVideo.map((item, key) => (
-                            <div className={cx('video-item')} key={key}>
-                                <Link to={`/videos/${item.uuid}`}>
-                                    <video
-                                        src={item.file_url}
-                                        ref={videoRef}
-                                        onMouseOver={(e) => e.target.play()}
-                                        onMouseOut={(e) => {
-                                            e.target.pause();
-                                            e.target.currentTime = 0;
-                                        }}
-                                        muted
-                                        // onClick={}
-                                    ></video>
-                                </Link>
+                        {listVideo.map((item) => (
+                            <div className={cx('video-item')}>
+                                <video
+                                    src={item.file_url}
+                                    ref={videoRef}
+                                    onMouseOver={(e) => e.target.play()}
+                                    onMouseOut={(e) => {
+                                        e.target.pause();
+                                        e.target.currentTime = 0;
+                                    }}
+                                    muted
+                                    // onClick={}
+                                ></video>
                                 <div className={cx('video-item-info')}>
                                     <PauseIcon width="18" height="18" className={cx('pause-icon')} />
                                     <span>{item.views_count}</span>
