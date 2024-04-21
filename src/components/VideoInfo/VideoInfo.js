@@ -69,12 +69,9 @@ function VideoInfo({ data }) {
             <div className={cx('video-desc-wrapper')}>
                 <span className={cx('video-desc')}>{data.description}</span>
                 <div className={cx('hashtag-wrapper')}>
-                    <a className={cx('video-hashtag')} href="https://www.tiktok.com/tag/travel">
+                    {/* <a className={cx('video-hashtag')} href="https://www.tiktok.com/tag/travel">
                         <strong className={cx('hashtag-link')}>#travel</strong>
-                    </a>
-                    <a className={cx('video-hashtag')} href="https://www.tiktok.com/tag/travel">
-                        <strong className={cx('hashtag-link')}>#travel</strong>
-                    </a>
+                    </a> */}
                 </div>
             </div>
             <h4 className={cx('video-music')}>

@@ -3,8 +3,8 @@ import { createContext, useState } from 'react';
 const ModalContext = createContext();
 
 function ModalProvider({ children }) {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [typeForm, setTypeForm] = useState('login');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -14,8 +14,8 @@ function ModalProvider({ children }) {
         setModalIsOpen(false);
     };
 
-    const handleChangeForm = (type) => {
-        setTypeForm(type);
+    const handleChangeForm = (form) => {
+        setTypeForm(form);
     };
 
     const values = {

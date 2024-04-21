@@ -2,17 +2,15 @@ import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
-import { useContext, useEffect, useState } from 'react';
+import { useState, useContext } from 'react';
 import Modal from 'react-modal';
 import Button from '~/components/Button/Button';
-import { ModalContext } from '~/components/ModalContext';
-import { LoginContext } from '~/components/LoginContext';
-import { useLogin, useModal } from '~/hooks';
+import { useModal } from '~/hooks';
 import { Wrapper as PopperWrapper } from '~/components/Popper/';
 import Header from './Header';
 import MenuItem from './MenuItem';
-import * as getUserService from '~/services/getUserService';
 import styles from './Menu.module.scss';
+import { LoginContext } from '~/components/LoginContext';
 
 const cx = classNames.bind(styles);
 
@@ -44,22 +42,9 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn,
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
     const isLogin = localStorage.getItem('token') !== null;
-    const [data, setData] = useState({});
-
-    const { logOut } = useLogin();
+    // const [data, setData] = useState({});
+    const loginContext = useContext(LoginContext);
     const { modalIsOpen, openModal, closeModal } = useModal();
-
-    // const modalContext = useContext(ModalContext);
-
-    useEffect(() => {
-        const fetchCurrentUser = async () => {
-            const result = await getUserService.getCurrentUser();
-            if (result) {
-                setData(result);
-            }
-        };
-        fetchCurrentUser();
-    }, []);
 
     // luon quay lai trang dau tien sau khi tat menu
     const handleResetMenu = () => {
@@ -85,7 +70,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn,
                                 onChange(item);
                             }
                             if (item.title === 'View profile') {
-                                item.to = `/@${data.nickname}`;
+                                item.to = `/@${loginContext.data.nickname}`;
                             }
                             if (item.title === 'Log out' && isLogin) {
                                 openModal();
@@ -106,7 +91,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn,
                                 <Button outlineGray large onClick={() => closeModal()}>
                                     Cancel
                                 </Button>
-                                <Button outlinePrimary large onClick={() => logOut()}>
+                                <Button outlinePrimary large onClick={() => loginContext.handleLogOut()}>
                                     Log out
                                 </Button>
                             </div>

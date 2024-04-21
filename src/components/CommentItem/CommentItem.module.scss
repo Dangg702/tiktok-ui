@@ -1,0 +1,53 @@
+.comment-block {
+    display: flex;
+}
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    margin-right: 12px;
+}
+.username {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.name {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+.btn-action-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 14px;
+}
+
+.cover-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: rgba(22, 24, 35, 0.06);
+    padding: 6px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    transition: 0.2 ease-in-out;
+}
+
+.count-icon {
+    color: var(--text-color);
+    font-size: 1.2em;
+    line-height: 16px;
+    text-align: center;
+    margin-left: 4px;
+}
+
+.heart-active-icon {
+    color: var(--primary);
+}

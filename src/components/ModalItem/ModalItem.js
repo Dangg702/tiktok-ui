@@ -9,7 +9,6 @@ import LoginSolutions from '~/components/AuthForm/UserAuthSolutions/LoginSolutio
 import RegisterSolutions from '~/components/AuthForm/UserAuthSolutions/RegisterSolutions';
 import LoginForm from '~/components/AuthForm/LoginForm';
 import RegisterForm from '../AuthForm/RegisterForm';
-import { useModal } from '~/hooks';
 
 import styles from './ModalItem.module.scss';
 
@@ -17,7 +16,6 @@ const cx = classNames.bind(styles);
 
 function ModalItem() {
     const modalContext = useContext(ModalContext);
-    // const { modalIsOpen, typeForm, openModal, closeModal, handleChangeForm } = useModal();
 
     return (
         <div className={cx('wrapper')}>

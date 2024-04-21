@@ -1,0 +1,167 @@
+.modal-edit-profile-wrapper {
+    width: 100%;
+    height: 100%;
+}
+.edit-profile-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 30px;
+    padding-bottom: 24px;
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
+}
+.edit {
+    padding: 20px 0px;
+    display: flex;
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
+}
+.text {
+    font-weight: 600;
+    line-height: 24px;
+    font-size: 1.6rem;
+    width: 120px;
+    margin-right: 24px;
+}
+.change-avatar {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-left: 128px;
+}
+.input-file {
+    position: absolute;
+    width: 116px;
+    height: 116px;
+    opacity: 0;
+}
+.info {
+    position: relative;
+    width: 624px;
+    height: 200px;
+}
+
+.image-profile {
+    width: 116px;
+    height: 116px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.cover-input {
+    width: 100%;
+}
+.input-data {
+    width: 100%;
+    height: 38px;
+    border-radius: 4px;
+    background: rgba(22, 24, 35, 0.06);
+    caret-color: rgb(254, 44, 85);
+    font-size: 16px;
+    color: rgb(22, 24, 35);
+    line-height: 24px;
+    outline: none;
+    border: none;
+    padding: 7px 12px;
+    box-sizing: border-box;
+}
+.personal {
+    width: 396px;
+    height: 119px;
+    position: absolute;
+    left: 138px;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nickname {
+    font-family: SofiaPro, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    word-break: break-word;
+}
+.name {
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 25px;
+    text-overflow: ellipsis;
+    height: 25px;
+    overflow: hidden;
+    max-width: 450px;
+    white-space: nowrap;
+    padding-bottom: 18px;
+}
+
+.button-follow {
+    width: 208px;
+    height: 36px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: rgba(22, 24, 35, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-family: TikTokDisplayFont, PingFangSC, sans-serif;
+}
+
+.icon-edit {
+    padding: 0 4px;
+}
+
+.interact-count {
+    margin-top: 24px;
+}
+
+.counts {
+    padding-right: 6px;
+}
+
+.field {
+    padding-right: 16px;
+    color: rgba(22, 24, 35, 0.75);
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    display: inline-block;
+}
+
+.bio {
+    margin-top: 10px;
+}
+
+.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+
+    span {
+        margin-right: 14px;
+    }
+}
+
+.container {
+    position: relative;
+    display: block;
+    width: 194px;
+    height: 258px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.edit-profile-btn-wrapper {
+    padding-top: 20px;
+    float: right;
+}

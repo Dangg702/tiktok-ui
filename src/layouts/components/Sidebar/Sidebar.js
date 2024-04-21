@@ -25,8 +25,7 @@ import styles from './Sidebar.module.scss';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    const currentUser = true;
-    const [isLogin, setIsLogin] = useState(localStorage.getItem('token') !== null);
+    const isLogin = localStorage.getItem('token');
 
     const modalContext = useContext(ModalContext);
     // const { openModal } = useModal();
@@ -58,7 +57,7 @@ function Sidebar() {
             ) : (
                 <div className={cx('frame-container')}>
                     <p className={cx('login-content')}>Log in to follow creators, like videos, and view comments.</p>
-                    <Button className={cx('login-btn')} outlinePrimary large onClick={modalContext.openModal}>
+                    <Button className={cx('login-btn')} outlinePrimary large onClick={() => modalContext.openModal()}>
                         Login
                     </Button>
                     <ModalCustom>

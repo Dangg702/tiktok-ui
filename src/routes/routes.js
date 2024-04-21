@@ -11,6 +11,7 @@ import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
 import Live from '~/pages/Live';
+import VideoDetail from '~/pages/VideoDetail';
 
 // public roures: các trang không cần đăng nhập vẫn xem được
 const publicRoutes = [
@@ -19,6 +20,7 @@ const publicRoutes = [
     { path: config.routes.explore, component: Explore },
     { path: config.routes.live, component: Live },
     { path: config.routes.profile, component: Profile },
+    { path: config.routes.videoDetail, component: VideoDetail, layout: null },
     { path: config.routes.upload, component: Upload, layout: HeaderOnly },
     { path: config.routes.search, component: Search, layout: null },
 ];
